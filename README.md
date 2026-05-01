@@ -1,48 +1,51 @@
-# bcm-budget-system-case-study
-A technical case study of a sovereign budget management system designed for the Direction Générale of BCM.
-# Case Study: Sovereign Budget Management System (BCM-AEMS)
+# Case Study: BCM-AEMS (Sovereign Budget Execution System)
 
-## 📌 Project Overview
-The **BCM-AEMS** is a high-security, enterprise-level budget management system developed for the **Direction Générale of BCM**. The primary goal was to digitize the sovereign budgetary process, replacing manual tracking with a secure, automated, and transparent digital workflow.
+## 🏦 Project Overview
+The **BCM-AEMS** is a high-security enterprise application developed for the **Banque Centrale de Mauritanie (BCM)**. The system was designed to transform manual, Excel-based budgetary tracking into a centralized, secure, and auditable digital ecosystem.
 
-> **Note:** Due to the sensitive nature of the project and institutional privacy agreements, the source code is hosted in a private repository. This repository serves as a technical case study of the architecture and implementation.
+> **Note:** To maintain the security and confidentiality of a national financial institution, the source code is private. This repository serves as a technical documentation of the architecture and engineering decisions.
 
 ---
 
-## 🚀 The Challenge
-The institution faced several critical challenges:
-- **Data Fragmentation:** Budgetary data was spread across multiple spreadsheets and physical documents.
-- **Lack of Real-time Tracking:** No centralized way to monitor spending versus allocation in real-time.
-- **Security Risks:** Need for strict Role-Based Access Control (RBAC) to ensure only authorized personnel could approve financial movements.
+## 🛠️ Technical Stack (Modern Monolith)
+I implemented a **Three-Tier Architecture** to ensure a strict separation of concerns and high security:
 
-## 🛠️ Technical Solution
-
-### 1. System Architecture
-I implemented a **Full-Stack Architecture** designed for stability and data integrity:
-- **Frontend:** Developed a responsive administrative dashboard focusing on data visualization (charts, tables, and reports) for executive decision-making.
-- **Backend:** Built a robust API layer to handle complex financial calculations and ensure atomic transactions (ensuring no budget is "lost" during updates).
-- **Database:** Designed a relational schema optimized for financial auditing, ensuring every change is logged with a timestamp and user ID.
-
-### 2. Key Features Implemented
-- **Automated Budget Allocation:** Logic to distribute funds across departments based on predefined rules.
-- **Approval Workflow:** A multi-step verification system where requests move from "Pending" $\rightarrow$ "Reviewed" $\rightarrow$ "Approved."
-- **Financial Reporting:** Automated generation of budget vs. actual spending reports.
-- **RBAC Security:** Custom middleware to manage permissions for different administrative levels.
-
-### 3. Tech Stack Used
-- **Languages:** `JavaScript`, `SQL`
-- **Frontend:** `React.js` / `Tailwind CSS` (or specify your framework)
-- **Backend:** `Node.js` / `PHP` (or specify your framework)
-- **Database:** `MySQL` / `PostgreSQL`
+- **Frontend (Presentation Layer):** `React 18` & `Tailwind CSS`. Developed as a Single Page Application (SPA) for a fluid user experience.
+- **Backend (Business Layer):** `Laravel 11 (PHP 8.2)`. Utilized the **Action-Service Pattern** to isolate financial logic for better auditability.
+- **The Bridge:** `Inertia.js`. Used to connect Laravel and React, allowing for server-side routing with a client-side reactive UI.
+- **Database (Data Layer):** `MySQL 8`. Guaranteed **ACID compliance** to ensure that no financial transaction is partially recorded or lost.
 
 ---
 
-## 📈 Impact & Results
-- **Efficiency:** Reduced the time required for budget reporting by [X]% (e.g., 50%).
-- **Accuracy:** Eliminated human error in budget calculations through automated validation.
-- **Transparency:** Provided the Direction Générale with a "Single Source of Truth" for all financial data.
+## 🔒 Enterprise-Grade Security & Logic
+This project required strict banking standards. I implemented the following professional protocols:
 
-## 🧠 Engineering Lessons Learned
-- **Handling Sensitive Data:** Learned how to implement strict data validation to prevent financial discrepancies.
-- **User-Centric Design:** Learned how to build interfaces for non-technical administrative staff.
-- **Scalability:** Designed the database to handle increasing amounts of financial records over several fiscal years.
+### 1. The Maker-Checker Principle (Four-Eyes Principle)
+To prevent fraud and errors, the system enforces a dual-authorization workflow:
+- **Maker (Finance/Staff):** Initiates the transaction (Status: `Pending`).
+- **Checker (Administrator):** Reviews and provides the final sovereign validation (`Approved` or `Rejected`).
+
+### 2. Advanced Security Layer
+- **Cryptographic Validation:** Implemented `Bcrypt` hashing (Rounds=12) for passwords.
+- **Session Security:** Implemented **Session ID Regeneration** after login to prevent *Session Fixation* attacks.
+- **Access Control:** Strict **RBAC (Role-Based Access Control)** to ensure data silos between different institutional roles.
+- **Audit Trail:** A dedicated `Activity Log` system that records every single action (Login, Update, Export) for full traceability.
+
+---
+
+## 📊 Key Engineering Features
+- **Analytical Dashboard:** Built with `Recharts` to provide real-time visual monitoring of budget consumption.
+- **Budgetary Logic:** A custom engine that calculates balances and triggers "Chromatic Alerts" (Green/Amber/Red) when budget thresholds are reached.
+- **Institutional Export:** Automated generation of secure `PDF` and `Excel (XLSX)` reports for official auditing.
+
+---
+
+## 📈 Impact
+- **Digitization:** Replaced fragmented Excel files with a "Single Source of Truth."
+- **Risk Reduction:** Eliminated manual entry errors and provided an immutable audit trail.
+- **Efficiency:** Reduced the time for budget reporting and executive decision-making through real-time analytics.
+
+## 🧠 Lessons Learned
+- Mastering the **Modern Monolith** stack (Laravel + Inertia + React).
+- Designing for **Financial Integrity** (ACID, Maker-Checker).
+- Building for **Sovereign Institutions** where security is more important than speed.
